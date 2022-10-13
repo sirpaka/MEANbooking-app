@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xs-12 col-sm-10 col-md-8 ">
+      <div class="header">
+        <div>
+          <img class="img-responsive" src="assets/images/logo.png">
+        </div>
+        <div>
+          <h2 class="text"> Ilmoita tiedot kirkkovenevarausta varten: </h2>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-xs-12 col-sm-10 col-md-8 ">
+      <hr>
+      <form (ngSubmit)="onSubmit(booking)" #booking="ngForm">
+        <div class="form-group">
+          <label for="appointmentdate">Päivämäärä *: </label><br>
+          <input type="date" id="date" class="form-control" ngModel name="date" required>
+        </div>
+        <div id="apptTime" ngModelGroup="apptTime" #apptTime="ngModelGroup">
+          <div class="form-group">
+            <label for="from">Aloitusaika *:&nbsp;&nbsp;</label>
+            <input type="time" id="from" class="form-control" ngModel name="from" required>
+          </div>
+          <div class="form-group">
+            <label for="to">Lopetusaika *:&nbsp;&nbsp;</label>
+            <input type="time" id="to" class="form-control" ngModel name="to" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="apptmaker">Varaajan nimi *:</label><br>
+          <input type="text" id="apptmaker" class="form-control" ngModel name="apptmaker" #apptmaker="ngModel" required
+            minlength="2">
+        </div>
+        <span class="help-block" *ngIf="!apptmaker.valid && apptmaker.touched">Varajaan nimi vaaditaan!</span>
+        <div class="form-group">
+          <label for="email">Sähköpostiosoite *: </label>
+          <input type="email" id="email" class="form-control" ngModel name="email" required
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel">
+          <span class="help-block" *ngIf="!email.valid && email.touched">Syötä kelvollinen sähköpostiosoite!</span>
+        </div>
+        <div class="form-group">
+          <label for="tel">Puhelinnumero *: </label>
+          <input type="tel" id="tel" class="form-control" ngModel name="tel" required minlength="6" #tel="ngModel">
+        </div>
+        <span class="help-block" *ngIf="!tel.valid && tel.touched">Tarkasta puhelinnumero! Numero, jonka syötit, oli
+          liian lyhyt.</span>
+        <div class="form-group">
+          <label for="tel">Laskutusosoite : </label>
+          <input type="text" id="billing" class="form-control" ngModel name="billing" #billing="ngModel">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!booking.valid">Tee varaus</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row d-flex justify-content-center" *ngIf="submitted">
+  <div class="col-xs-12 col-sm-10 col-md-8">
+    <hr>
+    <h2>Varauksesi: </h2> <br>
+    <p>Varaaja: {{ bookingData.apptmaker }}</p>
+    <p>Päivämäärä: {{ bookingData.date }}</p>
+    <p>Mistä: {{ bookingData.from }}</p>
+    <p>Mihin: {{ bookingData.to }}</p>
+    <p>Email:{{ bookingData.email }} </p>
+    <p>Puh:{{ bookingData.tel }} </p>
+    <p>Laskutustiedot:{{ bookingData.billing }} </p>
+    <h4> Kiitos varauksesta! Voit olla tarvittaessa yhteydessä meihin: </h4>
+    <p>puh: 050 ******** tai sähköpostitse: <a href="mailto: lappeenrannansoutajat@gmail.com">
+        lappeenrannansoutajat@gmail.com</a> </p>
+    <br><br>
+  </div>
+</div>
+
+<!-- <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xs-12 col-sm-10 col-md-8 ">
+        <div class="header">
+          <div>
+            <img class="img-responsive" src="assets/images/logo.png">
+          </div>
+          <div>
+            <h2 class="text"> Ilmoita tiedot kirkkovenevarausta varten: </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-xs-12 col-sm-10 col-md-8 ">
+        <hr>
+        <form (ngSubmit)="onSubmit(bookingData)" #bookingData="ngForm">
+          <div class="form-group">
+            <label for="bookedDate">Päivämäärä *: </label><br>
+            <input type="date" id="bookedDate" class="form-control" ngModel name="bookedDate" required>
+          </div>
+          <div id="bookedTime" ngModelGroup="bookedTime" #bookedTime="ngModelGroup">
+            <div class="form-group">
+              <label for="from">Aloitusaika *:&nbsp;&nbsp;</label>
+              <input type="time" id="from" class="form-control" ngModel name="from" required>
+            </div>
+            <div class="form-group">
+              <label for="to">Lopetusaika *:&nbsp;&nbsp;</label>
+              <input type="time" id="to" class="form-control" ngModel name="to" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bookingMaker">Varaajan nimi *:</label><br>
+            <input type="text" id="bookingMaker" class="form-control" ngModel name="bookingMaker" #bookingMaker="ngModel" required
+              minlength="2">
+          </div>
+          <span class="help-block" *ngIf="!bookingMaker.valid && bookingMaker.touched">Varajaan nimi vaaditaan!</span>
+          <div class="form-group">
+            <label for="email">Sähköpostiosoite *: </label>
+            <input type="email" id="email" class="form-control" ngModel name="email" required
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel">
+            <span class="help-block" *ngIf="!email.valid && email.touched">Syötä kelvollinen sähköpostiosoite!</span>
+          </div>
+          <div class="form-group">
+            <label for="tel">Puhelinnumero *: </label>
+            <input type="tel" id="tel" class="form-control" ngModel name="tel" required minlength="6" #tel="ngModel">
+          </div>
+          <span class="help-block" *ngIf="!tel.valid && tel.touched">Tarkasta puhelinnumero! Numero, jonka syötit, oli
+            liian lyhyt.</span>
+          <div class="form-group">
+            <label for="billing">Laskutusosoite : </label>
+            <input type="text" id="billing" class="form-control" ngModel name="billing" #billing="ngModel">
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!bookingData.valid">Tee varaus</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center" *ngIf="submitted">
+    <div class="col-xs-12 col-sm-10 col-md-8">
+      <hr>
+      <h2>Varauksesi: </h2> <br>
+      <p>Varaaja: {{ bookingData.bookingMaker }}</p>
+      <p>Päivämäärä: {{ bookingData.bookedDate }}</p>
+      <p>Mistä: {{ bookingData.from }}</p>
+      <p>Mihin: {{ bookingData.to }}</p>
+      <p>Email:{{ bookingData.email }} </p>
+      <p>Puh:{{ bookingData.tel }} </p>
+      <p>Laskutustiedot:{{ bookingData.billing }} </p>
+      <h4> Kiitos varauksesta! Voit olla tarvittaessa yhteydessä meihin: </h4>
+      <p>puh: 050 ******** tai sähköpostitse: <a href="mailto: lappeenrannansoutajat@gmail.com">
+          lappeenrannansoutajat@gmail.com</a> </p>
+      <br><br>
+    </div>
+  </div> --> 
+  

@@ -1,0 +1,19 @@
+{
+  "name": "bookingapp",
+  "version": "1.0.0",
+  "description": "MEAN stack booking app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@angular-devkit/build-angular": "^14.2.3",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "mongoose": "*"
+  },
+  "author": "Sirpa Karhu",
+  "license": "ISC"
+}

@@ -1,0 +1,26 @@
+.header {
+    margin: 30px 0px 5px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    margin-left: 25px;
+    color: #ce1b28; 
+}
+
+hr {
+    border: 1px solid black;
+}
+
+button {
+    margin-top: 10px;
+}
+
+h2, h4 {
+    color: #ce1b28
+}
+
+.help-block {
+    color: red;
+}
